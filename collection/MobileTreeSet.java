@@ -1,0 +1,66 @@
+// 105.Create a collection of unique Mobile objects and sort them by default on the basis of price
+
+package collection;
+import java.util.TreeSet;
+import java.util.Iterator;;
+class Mobile implements Comparable
+{
+	String brand;
+	int price;
+	int ram;
+	
+	Mobile(String brand,int price,int ram){
+		this.brand = brand;
+		this.price = price;
+		this.ram = ram;
+	}
+	@Override
+		public String toString(){
+			return "Brand : "+brand+ ", Price : "+price+ ", Ram : "+ram ;
+		}
+	@Override
+		public boolean equals(Object o){
+			Mobile temp = (Mobile) o;
+			if (this.brand == temp.brand && this.price == temp.price && this.ram == temp.ram)
+			{
+				return true;
+			}
+			return false;
+		}
+	@Override
+		public int hashCode(){
+			return brand.hashCode() + (Integer.valueOf(price)).hashCode() + (Integer.valueOf(ram)).hashCode();
+		}
+	@Override
+		public int compareTo(Object o){
+			Mobile temp = (Mobile) o;
+			if (this.price > temp.price)
+			{
+				return 1;
+			}
+			if (this.price < temp.price)
+			{
+				return -1;
+			}
+			return 0;
+		}
+}
+class MobileTreeSet
+{
+	public static void main(String[] args) 
+	{
+		TreeSet t1 = new TreeSet();
+		t1.add(new Mobile("LAVA",10000,2));
+		t1.add(new Mobile("Karbon",20000,1));
+		t1.add(new Mobile("MicroMax",15000,2));
+		t1.add(new Mobile("Gionee",6000,2));
+		t1.add(new Mobile("LAVA",10000,2));
+		t1.add(new Mobile("LAVA",12000,2));
+
+		Iterator i = t1.iterator();
+		while (i.hasNext())
+		{
+			System.out.println(i.next());
+		}
+	}
+}
